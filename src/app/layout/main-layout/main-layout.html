@@ -1,0 +1,39 @@
+<div class="min-h-screen flex flex-col bg-[#111] text-white">
+
+  <!-- NAVBAR -->
+  <header class="border-b border-[#222] bg-[#0b0b0b]">
+    <nav class="max-w-7xl mx-auto px-6 flex justify-between items-center h-16">
+      <div class="text-xl font-bold text-red-500 tracking-wide">HorizonteMotor</div>
+
+      <ul class="hidden md:flex gap-8 text-sm">
+        <li><a routerLink="/" class="hover:text-red-400">Models</a></li>
+        <li><a routerLink="/" class="hover:text-red-400">Build & Price</a></li>
+        <li><a routerLink="/" class="hover:text-red-400">Shopping Tools</a></li>
+        <li><a routerLink="/" class="hover:text-red-400">News & Events</a></li>
+      </ul>
+
+      <div class="flex items-center gap-4">
+        <input type="text" placeholder="Search"
+          class="hidden md:block bg-[#1a1a1a] border border-[#333] rounded-md px-3 py-1 text-sm focus:outline-none">
+        <button class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-md text-sm font-medium">
+          Find a Dealer
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- CONTENT -->
+  <main class="flex-1">
+    <router-outlet></router-outlet>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-[#222] bg-[#0b0b0b] py-8 text-center text-xs text-gray-400">
+    <div class="max-w-7xl mx-auto px-6 flex justify-between">
+      <p>Privacy Policy · Terms of Service · Contact Us</p>
+      <p>© 2025 HorizonteMotor. All rights reserved.</p>
+    </div>
+  </footer>
+
+</div>
+
