@@ -1,11 +1,119 @@
-import { Component } from '@angular/core';
+import { Component,ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-homepage',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, RouterLink],
   templateUrl: './homepage.html',
   styleUrl: './homepage.css',
 })
-export class Homepage {
+export class Homepage implements AfterViewInit{
+  @ViewChild('bgVideo') bgVideo!: ElementRef<HTMLVideoElement>;
+
+  videos: string[] = [
+    'videos/sportbike.mp4',
+    'videos/sportbike2.mp4',
+    'videos/motocicleta.mp4',
+    'videos/motocicleta2.mp4'
+  ];
+
+   currentIndex = 0;
+
+  ngAfterViewInit() {
+    this.playVideo();
+  }
+
+  playVideo() {
+    const video = this.bgVideo.nativeElement;
+    video.src = this.videos[this.currentIndex];
+    video.load();
+    video.play();
+  }
+
+  onVideoEnded() {
+    this.currentIndex = (this.currentIndex + 1) % this.videos.length;
+    this.playVideo();
+  }
+
+
+selectedCategory = 0;
+selectedSlide = 0;
+
+selectCategory(index: number) {
+  this.selectedCategory = index;
+  this.selectedSlide = 0; 
+}
+
+categories = [
+  {
+    name: 'Diseño',
+    items: [
+      {
+        name: 'Yamaha FZ25 ABS',
+        desc: 'Diseño urbano agresivo con presencia deportiva.',
+        image: 'imagenes/motos/yamaha-fz25abs-azul2.png',
+        price: '$2.600.000 CLP',
+        details: 'Carrocería aerodinámica y postura de manejo cómoda.'
+      },
+      {
+        name: 'Honda CB190R',
+        desc: 'Líneas afiladas y estilo streetfighter.',
+        image: 'assets/img/moto2.jpg',
+        price: '$2.450.000 CLP',
+        details: 'Faros LED y tanque con estética muscular.'
+      },
+      {
+        name: 'Kawasaki Z400',
+        desc: 'Minimalismo agresivo y ADN “Z Spirit”.',
+        image: 'assets/img/moto3.jpg',
+        price: '$5.500.000 CLP',
+        details: 'Estilo naked premium con personalización.'
+      }
+    ]
+  },
+
+  {
+    name: 'Motor',
+    items: [
+      {
+        name: 'Yamaha FZ25 ABS',
+        desc: 'Motor 249cc monocilíndrico con inyección.',
+        image: 'imagenes/motos/yamaha-fz25abs-azul.png',
+        price: '$2.600.000 CLP',
+        details: '20.6 hp • Refrigeración por aire'
+      },
+      {
+        name: 'Honda CB190R',
+        desc: '184cc monocilíndrico deportivo.',
+        image: 'assets/img/moto2.jpg',
+        price: '$2.450.000 CLP',
+        details: '16.8 hp • Refrigeración por aire/aceite'
+      },
+      {
+        name: 'Kawasaki Z400',
+        desc: '399cc bicilíndrico DOHC.',
+        image: 'assets/img/moto3.jpg',
+        price: '$5.500.000 CLP',
+        details: '44 hp • Refrigeración líquida'
+      }
+    ]
+  },
+
+  
+];
+
+next() {
+  const total = this.categories[this.selectedCategory].items.length;
+  this.selectedSlide = (this.selectedSlide + 1) % total;
+}
+
+prev() {
+  const total = this.categories[this.selectedCategory].items.length;
+  this.selectedSlide = (this.selectedSlide - 1 + total) % total;
+}
 
 }
+
+

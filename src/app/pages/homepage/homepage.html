@@ -1,56 +1,113 @@
-<section class="w-full min-h-[calc(100vh-120px)] flex flex-col items-center justify-center text-center px-6 animate-fade-in">
+<section class="relative w-full min-h-[calc(100vh-120px)] flex flex-col items-center justify-center text-center px-6 overflow-hidden">
 
-  <h1 class="text-5xl md:text-7xl font-bold mb-4 tracking-tight">
-    Bienvenido a <span class="text-red-500">Horizonte Motor</span>
-  </h1>
+  
+<video
+  #bgVideo
+  autoplay
+  muted
+  playsinline
+  (ended)="onVideoEnded()"
+  class="absolute inset-0 w-full h-full object-cover opacity-80 transition-opacity duration-700">
+</video>
 
-  <p class="text-gray-300 max-w-2xl text-lg md:text-xl mb-8">
-    Tu próximo vehículo te espera. Explora nuestra selección de motocicletas, servicios y soporte especializado.
-  </p>
+  <div class="absolute inset-0 bg-black/60"></div>
 
-  <div class="flex flex-col md:flex-row gap-4">
-    <a
-      routerLink="/motos"
-      class="px-6 py-3 bg-red-600 hover:bg-red-700 transition rounded-lg font-semibold"
-    >
-      Ver Motos
-    </a>
+  <div class="relative z-10 animate-fade-in">
+    <h1 class="text-5xl md:text-7xl font-bold mb-4 tracking-tight">
+      Bienvenido a <span class="text-red-500">HorizonteMotor</span>
+    </h1>
 
-    <a
-      routerLink="/servicios"
-      class="px-6 py-3 border border-gray-500 hover:border-red-500 hover:text-red-400 transition rounded-lg font-semibold"
-    >
-      Servicios
-    </a>
+    <p class="text-gray-300 max-w-2xl text-lg md:text-xl mb-8">
+      Tu próximo vehículo te espera. Explora nuestra selección de motocicletas, servicios y soporte especializado.</p>
+
+    <div class="flex flex-col md:flex-row gap-4 justify-center">
+      <a
+        routerLink="/models"
+        class="px-6 py-3 bg-red-600 hover:bg-red-700 transition rounded-lg font-semibold">
+        Ver Motos
+      </a>
+
+      <a
+        routerLink="/servicios"
+        class="px-6 py-3 border border-gray-500 hover:border-red-500 hover:text-red-400 transition rounded-lg font-semibold">
+        Servicios
+      </a>
+    </div>
   </div>
+
 </section>
+
 
 <section class="px-6 py-20 max-w-6xl mx-auto animate-fade-in">
+
   <h2 class="text-3xl font-semibold mb-10 text-center">Modelos Destacados</h2>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-
-    <div class="bg-[#111924] p-5 rounded-xl border border-gray-700 hover:border-red-500 transition cursor-pointer">
-      <img src="assets/img/moto1.jpg" alt="Moto 1" class="rounded-lg mb-4">
-      <h3 class="text-xl font-bold mb-2">Yamaha FZ25</h3>
-      <p class="text-gray-400 text-sm mb-3">Estilo urbano potente y eficiente.</p>
-      <a routerLink="/motos" class="text-red-500 hover:underline text-sm">Ver más →</a>
-    </div>
-
-    <div class="bg-[#111924] p-5 rounded-xl border border-gray-700 hover:border-red-500 transition cursor-pointer">
-      <img src="assets/img/moto2.jpg" alt="Moto 2" class="rounded-lg mb-4">
-      <h3 class="text-xl font-bold mb-2">Honda CB190R</h3>
-      <p class="text-gray-400 text-sm mb-3">Diseño agresivo con tecnología moderna.</p>
-      <a routerLink="/motos" class="text-red-500 hover:underline text-sm">Ver más →</a>
-    </div>
-
-    <div class="bg-[#111924] p-5 rounded-xl border border-gray-700 hover:border-red-500 transition cursor-pointer">
-      <img src="assets/img/moto3.jpg" alt="Moto 3" class="rounded-lg mb-4">
-      <h3 class="text-xl font-bold mb-2">Kawasaki Z400</h3>
-      <p class="text-gray-400 text-sm mb-3">Potencia y control para dominar la ciudad.</p>
-      <a routerLink="/motos" class="text-red-500 hover:underline text-sm">Ver más →</a>
-    </div>
-
+  <!-- Tabs -->
+  <div class="flex flex-wrap justify-center gap-4 mb-10">
+    <button
+  *ngFor="let cat of categories; let i = index"
+  (click)="selectCategory(i)"
+  class="px-6 py-3 rounded-lg border transition font-semibold tracking-wide"
+  [class.bg-red-600]="selectedCategory === i"
+  [class.border-red-600]="selectedCategory === i"
+  [class.text-white]="selectedCategory === i"
+  [class.border-gray-600]="selectedCategory !== i"
+  [class.text-gray-300]="selectedCategory !== i"
+  [class.hover:border-red-500]="selectedCategory !== i"
+>
+  {{ cat.name }}
+</button>
   </div>
+
+  <!-- Carousel -->
+<div class="relative max-w-4xl mx-auto">
+
+  <!-- Botón Izquierda -->
+  <button
+    class="absolute left-0 top-1/2 -translate-y-1/2 p-3 bg-black/40 hover:bg-black/80 text-2xl rounded-full z-20"
+    (click)="prev()"
+  >
+    ‹
+  </button>
+
+  <div class="overflow-hidden rounded-xl">
+    <div
+      class="flex transition-transform duration-700 ease-in-out"
+      [style.transform]="'translateX(-' + (selectedSlide * 100) + '%)'"
+    >
+
+      <div
+        *ngFor="let moto of categories[selectedCategory].items"
+        class="min-w-full"
+      >
+        <div class="bg-[#111924] p-6 rounded-xl border border-gray-700 hover:border-red-500 transition mx-auto max-w-3xl">
+          <img [src]="moto.image" class="rounded-lg mb-4" />
+          <h3 class="text-2xl font-bold mb-3">{{ moto.name }}</h3>
+          <p class="text-gray-400 mb-4">{{ moto.desc }}</p>
+
+          <p class="text-red-400 font-semibold text-lg">Desde: {{ moto.price }}</p>
+          <p class="text-gray-400 text-sm mt-1">{{ moto.details }}</p>
+
+          <a routerLink="/motos" class="text-red-500 hover:underline text-sm block mt-3">
+            Ver ficha completa →
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Botón Derecha -->
+  <button
+    class="absolute right-0 top-1/2 -translate-y-1/2 p-3 bg-black/40 hover:bg-black/80 text-2xl rounded-full z-20"
+    (click)="next()"
+  >
+    ›
+  </button>
+
+</div>
+
+
 </section>
+
 

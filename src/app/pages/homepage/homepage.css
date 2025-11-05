@@ -2,3 +2,7 @@
   display: block;
   animation: fade-in 0.6s ease-out forwards;
 }
+video {
+  transition: opacity 0.8s ease-in-out;
+}
+
