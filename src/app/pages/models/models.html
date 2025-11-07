@@ -1,1 +1,92 @@
-<p>models works!</p>
+<div class="flex flex-col lg:flex-row gap-10 px-6 py-10 max-w-7xl mx-auto text-gray-200">
+
+  <!-- 🔧 Sidebar de filtros -->
+  <aside class="lg:w-1/4 bg-[#0f1724] border border-gray-700 rounded-xl p-6 h-fit">
+    <h3 class="text-lg font-semibold mb-4 text-white">Filtros</h3>
+
+    <!-- Marca -->
+    <label class="block mb-3 text-sm font-medium">Marca</label>
+    <select [(ngModel)]="filters.brand" class="w-full bg-[#1b2433] border border-gray-600 rounded-lg p-2">
+      <option value="">Todas</option>
+      <option *ngFor="let brand of brands" [value]="brand">{{ brand }}</option>
+    </select>
+
+    <!-- Año -->
+    <label class="block mt-5 mb-3 text-sm font-medium">Año</label>
+    <select [(ngModel)]="filters.year" class="w-full bg-[#1b2433] border border-gray-600 rounded-lg p-2">
+      <option value="">Todos</option>
+      <option *ngFor="let y of years" [value]="y">{{ y }}</option>
+    </select>
+
+    <!-- Uso -->
+    <label class="block mt-5 mb-3 text-sm font-medium">Uso</label>
+    <select [(ngModel)]="filters.usage" class="w-full bg-[#1b2433] border border-gray-600 rounded-lg p-2">
+      <option value="">Todos</option>
+      <option value="nuevo">Nuevo</option>
+      <option value="usado">Usado</option>
+    </select>
+
+    <!-- Rango de precio -->
+    <label class="block mt-5 mb-2 text-sm font-medium">Rango de Precio</label>
+    <div class="flex items-center justify-between text-sm mb-1">
+      <span>${{ filters.priceMin }}</span>
+      <span>${{ filters.priceMax }}</span>
+    </div>
+    <input type="range" min="2000" max="25000" step="500" [(ngModel)]="filters.priceMin" class="w-full accent-red-600 mb-1">
+    <input type="range" min="2000" max="25000" step="500" [(ngModel)]="filters.priceMax" class="w-full accent-red-600 mb-4">
+
+    <button (click)="applyFilters()" class="w-full py-2 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg">
+      Aplicar Filtros
+    </button>
+  </aside>
+
+  <!-- 🏍️ Contenido principal -->
+  <main class="flex-1">
+    <!-- Tabs de tipo de moto -->
+    <div class="flex flex-wrap gap-3 mb-8 justify-center">
+      <button
+        *ngFor="let type of motoTypes"
+        (click)="selectType(type)"
+        class="px-5 py-2 rounded-lg border font-semibold transition"
+        [class.bg-red-600]="selectedType === type"
+        [class.border-red-600]="selectedType === type"
+        [class.text-white]="selectedType === type"
+        [class.text-gray-300]="selectedType !== type"
+        [class.border-gray-600]="selectedType !== type"
+        [class.hover:border-red-500]="selectedType !== type"
+      >
+        {{ type }}
+      </button>
+    </div>
+
+    <!-- Header de título + orden -->
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-2xl font-bold text-white">{{ selectedType }} Motorcycles</h2>
+      <select [(ngModel)]="sortBy" (change)="sortModels()" class="bg-[#1b2433] border border-gray-600 rounded-lg p-2">
+        <option value="newest">Más recientes</option>
+        <option value="lowest">Precio más bajo</option>
+        <option value="highest">Precio más alto</option>
+      </select>
+    </div>
+
+    <!-- Grid de modelos -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div
+        *ngFor="let moto of filteredModels"
+        class="bg-[#111924] p-5 rounded-xl border border-gray-700 hover:border-red-500 transition flex flex-col justify-between"
+      >
+        <div>
+          <img [src]="moto.image" alt="{{ moto.name }}" class="rounded-lg mb-4" />
+          <h3 class="text-lg font-bold">{{ moto.name }}</h3>
+          <p class="text-red-400 font-semibold">{{ moto.price | currency:'USD':'symbol':'1.0-0' }}</p>
+          <p class="text-gray-400 text-sm mt-2">{{ moto.description }}</p>
+        </div>
+
+        <button class="mt-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg font-semibold text-white">
+          Ver Detalles
+        </button>
+      </div>
+    </div>
+  </main>
+</div>
+

@@ -58,17 +58,17 @@ categories = [
         details: 'Carrocería aerodinámica y postura de manejo cómoda.'
       },
       {
-        name: 'Honda CB190R',
-        desc: 'Líneas afiladas y estilo streetfighter.',
-        image: 'assets/img/moto2.jpg',
-        price: '$2.450.000 CLP',
-        details: 'Faros LED y tanque con estética muscular.'
+        name: 'Honda CB190R 2.0',
+        desc: 'Diseño sport con estilo único.',
+        image: 'imagenes/motos/HondaCB190Red.png',
+        price: '$60.367.924 CLP',
+        details: 'Sistema de iluminación LED. Pantalla TFT y puerto de carga USB C.'
       },
       {
-        name: 'Kawasaki Z400',
+        name: 'Kawasaki Z900 SE ABS',
         desc: 'Minimalismo agresivo y ADN “Z Spirit”.',
-        image: 'assets/img/moto3.jpg',
-        price: '$5.500.000 CLP',
+        image: 'imagenes/motos/kawazakiz900seabsgreen.png',
+        price: '$14.090.000 CLP',
         details: 'Estilo naked premium con personalización.'
       }
     ]
@@ -85,10 +85,10 @@ categories = [
         details: '20.6 hp • Refrigeración por aire'
       },
       {
-        name: 'Honda CB190R',
-        desc: '184cc monocilíndrico deportivo.',
+        name: 'Honda CB190R 2.0',
+        desc: '184cc Monocilindrico, SOHC, 2 válvulas.',
         image: 'assets/img/moto2.jpg',
-        price: '$2.450.000 CLP',
+        price: '$60.367.924 CLP',
         details: '16.8 hp • Refrigeración por aire/aceite'
       },
       {
