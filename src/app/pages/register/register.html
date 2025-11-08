@@ -1,1 +1,64 @@
-<p>register works!</p>
+<section class="flex flex-col items-center justify-center min-h-[80vh] px-6 text-center animate-fade-in">
+
+  <!-- Volver al inicio -->
+  <a routerLink="/" class="mb-8 inline-flex items-center gap-2 text-gray-400 hover:text-red-500 transition">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    </svg>
+    Volver al inicio
+  </a>
+
+  <h1 class="text-3xl font-bold mb-3">Crea tu cuenta</h1>
+  <p class="text-gray-400 mb-6">
+    O <a routerLink="/login" class="text-red-500 hover:underline">inicia sesión</a> si ya tienes una
+  </p>
+
+  <form
+    (ngSubmit)="onRegister()"
+    class="bg-[#141b24] border border-gray-700 rounded-xl p-6 w-full max-w-md text-left"
+  >
+    <label class="block text-sm text-gray-400 mb-1">Nombre completo</label>
+    <input
+      type="text"
+      [(ngModel)]="name"
+      name="name"
+      required
+      class="w-full mb-4 p-3 rounded-lg bg-[#1b2433] border border-gray-600 focus:border-red-500 text-white"
+      placeholder="Bryan Moscoso"
+    />
+
+    <label class="block text-sm text-gray-400 mb-1">Correo electrónico</label>
+    <input
+      type="email"
+      [(ngModel)]="email"
+      name="email"
+      required
+      class="w-full mb-4 p-3 rounded-lg bg-[#1b2433] border border-gray-600 focus:border-red-500 text-white"
+      placeholder="tu@email.com"
+    />
+
+    <label class="block text-sm text-gray-400 mb-1">Contraseña</label>
+    <input
+      type="password"
+      [(ngModel)]="password"
+      name="password"
+      required
+      class="w-full mb-4 p-3 rounded-lg bg-[#1b2433] border border-gray-600 focus:border-red-500 text-white"
+      placeholder="********"
+    />
+
+    <label class="block text-sm text-gray-400 mb-1">Confirmar contraseña</label>
+    <input
+      type="password"
+      [(ngModel)]="confirmPassword"
+      name="confirmPassword"
+      required
+      class="w-full mb-6 p-3 rounded-lg bg-[#1b2433] border border-gray-600 focus:border-red-500 text-white"
+      placeholder="********"
+    />
+
+    <button type="submit" class="w-full py-2 bg-red-600 hover:bg-red-700 rounded-lg font-semibold text-white transition">
+      Crear Cuenta
+    </button>
+  </form>
+</section>

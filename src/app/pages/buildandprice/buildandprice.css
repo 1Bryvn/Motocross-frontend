@@ -1,0 +1,9 @@
+canvas {
+  border-radius: 12px;
+  background-color: #0b0b0b;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+}
+
+button.bg-red-600 {
+  transition: all 0.2s ease;
+}

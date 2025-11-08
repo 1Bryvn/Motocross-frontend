@@ -3,8 +3,12 @@
   <!-- NAVBAR -->
   <header class="border-b border-[#222] bg-[#0b0b0b]">
     <nav class="max-w-7xl mx-auto px-6 flex justify-between items-center h-16">
-      <div class="text-xl font-bold text-red-500 tracking-wide">HorizonteMotor</div>
+      <!-- Logo -->
+      <div class="flex items-center space-x-2">
+        <span class="text-red-500 text-2xl font-bold tracking-wide">HorizonteMotor</span>
+      </div>
 
+      <!-- Menú -->
       <ul class="hidden md:flex gap-8 text-sm">
         <li><a routerLink="/" class="hover:text-red-400">Home</a></li>
         <li><a routerLink="/models" class="hover:text-red-400">Modelos</a></li>
@@ -13,6 +17,7 @@
         <li><a routerLink="/newandevents" class="hover:text-red-400">Novedades</a></li>
       </ul>
 
+      <!-- Buscador + Dealer -->
       <div class="flex items-center gap-4">
         <input type="text" placeholder="Search"
           class="hidden md:block bg-[#1a1a1a] border border-[#333] rounded-md px-3 py-1 text-sm focus:outline-none">
@@ -21,9 +26,25 @@
         </button>
       </div>
     </nav>
+
+    <!-- Botones Login/Register -->
+    <div class="flex justify-end pr-6 pb-2 space-x-3">
+      <a
+        routerLink="/login"
+        class="px-4 py-2 bg-transparent border border-red-600 text-red-500 hover:bg-red-600 hover:text-white rounded-lg font-semibold transition"
+      >
+        Iniciar Sesión
+      </a>
+      <a
+        routerLink="/register"
+        class="px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg text-white font-semibold transition"
+      >
+        Registrarse
+      </a>
+    </div>
   </header>
 
-  <!-- CONTENT -->
+  <!-- CONTENIDO -->
   <main class="flex-1">
     <router-outlet></router-outlet>
   </main>
@@ -35,6 +56,4 @@
       <p>© 2025 HorizonteMotor. All rights reserved.</p>
     </div>
   </footer>
-
 </div>
-
