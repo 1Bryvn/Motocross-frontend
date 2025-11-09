@@ -1,0 +1,30 @@
+[
+  {
+    "title": "Honda lanza la nueva CB190R 2.0 2025",
+    "category": "Nuevos Modelos",
+    "date": "2025-11-01",
+    "image": "assets/news/cb190r2025.jpg",
+    "description": "La nueva versión incluye mejoras en el motor, suspensión y un nuevo diseño aerodinámico con faros LED."
+  },
+  {
+    "title": "Actualización del configurador 3D",
+    "category": "Actualizaciones",
+    "date": "2025-10-20",
+    "image": "assets/news/config3d.jpg",
+    "description": "El configurador ahora permite rotación libre de 360° y selección de piezas personalizadas con vista previa en tiempo real."
+  },
+  {
+    "title": "Política de devoluciones mejorada",
+    "category": "Políticas",
+    "date": "2025-09-15",
+    "image": "assets/news/politicas.jpg",
+    "description": "Se amplía el plazo de devolución a 15 días hábiles para motocicletas y accesorios comprados en línea."
+  },
+  {
+    "title": "Yamaha presenta su nueva línea MT 2025",
+    "category": "Nuevos Modelos",
+    "date": "2025-08-22",
+    "image": "assets/news/yamaha_mt2025.jpg",
+    "description": "La serie MT incorpora nuevos motores EURO5, sistemas electrónicos avanzados y conectividad Bluetooth integrada."
+  }
+]

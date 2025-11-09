@@ -1,1 +1,50 @@
-<p>newandevents works!</p>
+<div class="min-h-screen bg-[#0b0b0b] text-white px-6 py-10">
+  <div class="max-w-7xl mx-auto">
+
+    <h1 class="text-4xl font-bold text-center mb-4">
+      Novedades y <span class="text-red-500">Actualizaciones</span>
+    </h1>
+    <p class="text-gray-400 text-center mb-10 max-w-2xl mx-auto">
+      Mantente al día con las últimas motos, actualizaciones de software y políticas de Horizonte Motor.
+    </p>
+
+    <!-- Filtros de categoría -->
+    <div class="flex flex-wrap justify-center gap-4 mb-10">
+      <button
+        *ngFor="let cat of categories"
+        (click)="filterByCategory(cat)"
+        class="px-5 py-2 rounded-lg border transition font-medium"
+        [class.bg-red-600]="selectedCategory === cat"
+        [class.border-red-600]="selectedCategory === cat"
+        [class.text-white]="selectedCategory === cat"
+        [class.border-gray-600]="selectedCategory !== cat"
+        [class.text-gray-300]="selectedCategory !== cat"
+        [class.hover:border-red-500]="selectedCategory !== cat"
+      >
+        {{ cat }}
+      </button>
+    </div>
+
+    <!-- Tarjetas de noticias -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div
+        *ngFor="let item of filteredNews"
+        class="bg-[#111924] p-5 rounded-xl border border-gray-700 hover:border-red-500 transition flex flex-col justify-between"
+      >
+        <div>
+          <img [src]="item.image" [alt]="item.title" class="rounded-lg mb-4 w-full h-48 object-cover" />
+          <p class="text-xs text-gray-400 mb-1">{{ item.date | date: 'mediumDate' }}</p>
+          <h3 class="text-lg font-bold mb-2 text-red-400">{{ item.title }}</h3>
+          <p class="text-gray-300 text-sm">{{ item.description }}</p>
+        </div>
+
+        <span
+          class="mt-4 inline-block text-xs font-semibold px-3 py-1 bg-[#1a1a1a] rounded-lg border border-gray-600 text-gray-400 self-start"
+        >
+          {{ item.category }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+

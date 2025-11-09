@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Llave Dinamométrica PRO",
+    "description": "Permite ajustar tornillos con precisión. Ideal para talleres.",
+    "price": 89990,
+    "image": "assets/tools/llave-dinamometrica.jpg",
+    "category": "Mecánicas"
+  },
+  {
+    "name": "Compresor de Aire 50L",
+    "description": "Potente compresor para limpieza y mantenimiento de motocicletas.",
+    "price": 229990,
+    "image": "assets/tools/compresor-aire.jpg",
+    "category": "Eléctricas"
+  },
+  {
+    "name": "Set de Destornilladores Magnéticos",
+    "description": "Juego de 10 piezas con agarre ergonómico y puntas imantadas.",
+    "price": 24990,
+    "image": "assets/tools/destornilladores.jpg",
+    "category": "Mecánicas"
+  },
+  {
+    "name": "Casco Bluetooth Vortex",
+    "description": "Casco integral con conectividad Bluetooth integrada.",
+    "price": 119990,
+    "image": "assets/tools/casco-bluetooth.jpg",
+    "category": "Accesorios"
+  },
+  {
+    "name": "Luz LED Taller 100W",
+    "description": "Iluminación potente y fría para trabajar de noche.",
+    "price": 45990,
+    "image": "assets/tools/luz-led.jpg",
+    "category": "Eléctricas"
+  }
+]

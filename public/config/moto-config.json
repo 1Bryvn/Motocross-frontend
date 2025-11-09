@@ -1,38 +1,38 @@
 {
-  "modelName": "HondaCB190",
-  "basePrice": 13500,
+  "modelName": "HondaCB190 2.0",
+  "basePrice": 2990000,
   "parts": {
     "body": {
       "name": "Color del Carenado",
       "options": [
         { "label": "Rojo Fuego", "hex": "#e02828", "price": 0 },
-        { "label": "Negro Mate", "hex": "#111111", "price": 350 },
-        { "label": "Azul Racing", "hex": "#0055ff", "price": 450 },
-        { "label": "Gris Titanio", "hex": "#999999", "price": 300 }
+        { "label": "Negro Mate", "hex": "#111111", "price": 45000 },
+        { "label": "Azul Racing", "hex": "#0055ff", "price": 45000 },
+        { "label": "Gris Titanio", "hex": "#999999", "price": 45000 }
       ]
     },
     "exhaust": {
       "name": "Sistema de Escape",
       "options": [
         { "label": "Estándar", "price": 0 },
-        { "label": "Akrapovič Titanium", "price": 1250 },
-        { "label": "Yoshimura Carbon", "price": 1100 }
+        { "label": "Escape deportivo aftermarket (silencioso/titanio)", "price": 200000 },
+        { "label": "Yoshimura Carbon", "price": 117000 }
       ]
     },
     "handlebars": {
       "name": "Manillares",
       "options": [
         { "label": "Clubman Bars", "price": 0 },
-        { "label": "Tracker Bars", "price": 150 },
-        { "label": "Drag Bars", "price": 250 }
+        { "label": "Tracker Bars", "price": 150000 },
+        { "label": "Drag Bars", "price": 250000 }
       ]
     },
     "seat": {
       "name": "Asiento",
       "options": [
         { "label": "Standard", "price": 0 },
-        { "label": "Sport Seat", "price": 200 },
-        { "label": "Comfort Seat", "price": 300 }
+        { "label": "Sport Seat", "price": 200000 },
+        { "label": "Comfort Seat", "price": 300000 }
       ]
     }
   }

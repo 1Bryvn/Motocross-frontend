@@ -1,0 +1,72 @@
+[
+  {
+    "type": "Cruisers",
+    "name": "Road King",
+    "brand": "Harley-Davidson",
+    "year": 2024,
+    "usage": "nuevo",
+    "price": 18999,
+    "image": "assets/img/roadking.jpg",
+    "description": "Estilo clásico y motor potente para viajes largos."
+  },
+  {
+    "type": "Cruisers",
+    "name": "Street Glide",
+    "brand": "Harley-Davidson",
+    "year": 2023,
+    "usage": "usado",
+    "price": 21999,
+    "image": "assets/img/streetglide.jpg",
+    "description": "Comodidad touring con estilo moderno."
+  },
+  {
+    "type": "SportBikes",
+    "name": "Ninja ZX-10R",
+    "brand": "Kawasaki",
+    "year": 2025,
+    "usage": "nuevo",
+    "price": 20999,
+    "image": "assets/img/ninja.jpg",
+    "description": "Rendimiento extremo para pilotos expertos."
+  },
+  {
+    "type": "SportBikes",
+    "name": "CBR600RR",
+    "brand": "Honda",
+    "year": 2023,
+    "usage": "usado",
+    "price": 11499,
+    "image": "assets/img/cbr600.jpg",
+    "description": "Diseño ligero y conducción precisa."
+  },
+  {
+    "type": "Naked",
+    "name": "MT-09",
+    "brand": "Yamaha",
+    "year": 2024,
+    "usage": "nuevo",
+    "price": 14999,
+    "image": "assets/img/mt09.jpg",
+    "description": "Motor de tres cilindros y una conducción ágil."
+  },
+  {
+    "type": "Touring",
+    "name": "Gold Wing",
+    "brand": "Honda",
+    "year": 2025,
+    "usage": "nuevo",
+    "price": 27999,
+    "image": "assets/img/goldwing.jpg",
+    "description": "Lujo y confort para viajes de larga distancia."
+  },
+  {
+    "type": "Scooters",
+    "name": "NMAX 155",
+    "brand": "Yamaha",
+    "year": 2024,
+    "usage": "nuevo",
+    "price": 4999,
+    "image": "assets/img/nmax.jpg",
+    "description": "Scooter moderno, económico y ágil para la ciudad."
+  }
+]

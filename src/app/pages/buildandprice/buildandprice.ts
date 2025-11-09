@@ -83,6 +83,8 @@ selectedOptions: Record<string, any> = {};
     loader.load('model3d/HondaCB190Rojo3d.glb', (gltf) => {
       this.model = gltf.scene;
       this.scene.add(this.model);
+      this.model.position.set(0, -0.8, 0);
+      this.model.scale.set(1.0,1.0,1.0);
     });
   }
 
