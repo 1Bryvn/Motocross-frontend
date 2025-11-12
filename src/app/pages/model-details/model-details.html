@@ -1,0 +1,45 @@
+<div class="min-h-screen bg-[#0b0b0b] text-gray-200 p-6 flex flex-col items-center">
+  <div class="max-w-5xl w-full bg-[#111924] p-6 rounded-xl border border-gray-700 shadow-lg">
+    <button routerLink="/models" class="mb-4 text-sm text-red-400 hover:underline">
+      ← Volver al catálogo
+    </button>
+
+    <div class="flex flex-col md:flex-row gap-8 items-center">
+      <!-- Imagen -->
+      <img
+        [src]="moto?.image"
+        alt="{{ moto?.name }}"
+        class="rounded-lg w-full md:w-1/2 shadow-md"
+      />
+
+      <!-- Ficha técnica -->
+      <div class="flex-1">
+        <h2 class="text-3xl font-bold text-white mb-2">{{ moto?.name }}</h2>
+        <p class="text-red-400 font-semibold text-xl mb-4">
+          {{ moto?.price | currency:'CLP':'symbol-narrow':'1.0-0' }}
+        </p>
+        <p class="text-gray-400 mb-6">{{ moto?.description }}</p>
+
+        <div class="grid grid-cols-2 gap-y-2 text-sm">
+          <p><span class="font-semibold text-gray-300">Marca:</span> {{ moto?.brand }}</p>
+          <p><span class="font-semibold text-gray-300">Año:</span> {{ moto?.year }}</p>
+          <p><span class="font-semibold text-gray-300">Uso:</span> {{ moto?.usage }}</p>
+          <p><span class="font-semibold text-gray-300">Tipo:</span> {{ moto?.type }}</p>
+          <p><span class="font-semibold text-gray-300">Cilindraje:</span> {{ moto?.specs?.engine }}</p>
+          <p><span class="font-semibold text-gray-300">Potencia:</span> {{ moto?.specs?.power }}</p>
+          <p><span class="font-semibold text-gray-300">Transmisión:</span> {{ moto?.specs?.transmission }}</p>
+          <p><span class="font-semibold text-gray-300">Combustible:</span> {{ moto?.specs?.fuel }}</p>
+        </div>
+
+        <a
+          [href]="'https://wa.me/56912345678?text=Hola, quiero consultar por la ' + moto?.name"
+          target="_blank"
+          class="mt-6 inline-block bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition"
+        >
+          Consultar por WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+

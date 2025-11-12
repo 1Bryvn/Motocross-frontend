@@ -5,9 +5,18 @@
     "brand": "Harley-Davidson",
     "year": 2024,
     "usage": "nuevo",
-    "price": 18999,
-    "image": "assets/img/roadking.jpg",
-    "description": "Estilo clásico y motor potente para viajes largos."
+    "price": 17200000,
+    "image": "imagenes/motos/Harleydavinson2024.png",
+    "description": "Estilo clásico y motor potente para viajes largos, ideal para rutas abiertas.",
+    "specs": {
+      "engine": "1745 cc Milwaukee-Eight V-Twin",
+      "power": "89 HP a 5450 rpm",
+      "torque": "150 Nm a 3250 rpm",
+      "transmission": "6 velocidades",
+      "fuel": "Gasolina 95 octanos",
+      "weight": "372 kg",
+      "cooling": "Aire y aceite"
+    }
   },
   {
     "type": "Cruisers",
@@ -15,9 +24,18 @@
     "brand": "Harley-Davidson",
     "year": 2023,
     "usage": "usado",
-    "price": 21999,
-    "image": "assets/img/streetglide.jpg",
-    "description": "Comodidad touring con estilo moderno."
+    "price": 19900000,
+    "image": "imagenes/motos/streetglid.png",
+    "description": "Comodidad touring con estilo moderno y sistema de audio integrado.",
+    "specs": {
+      "engine": "1868 cc Milwaukee-Eight 114",
+      "power": "100 HP a 5200 rpm",
+      "torque": "163 Nm a 3000 rpm",
+      "transmission": "6 velocidades",
+      "fuel": "Gasolina 95 octanos",
+      "weight": "375 kg",
+      "cooling": "Aire y aceite"
+    }
   },
   {
     "type": "SportBikes",
@@ -25,9 +43,18 @@
     "brand": "Kawasaki",
     "year": 2025,
     "usage": "nuevo",
-    "price": 20999,
-    "image": "assets/img/ninja.jpg",
-    "description": "Rendimiento extremo para pilotos expertos."
+    "price": 18700000,
+    "image": "imagenes/motos/Ninja ZX-10R2025.png",
+    "description": "Rendimiento extremo para pilotos expertos, con electrónica derivada del WSBK.",
+    "specs": {
+      "engine": "998 cc 4 cilindros en línea",
+      "power": "203 HP a 13200 rpm",
+      "torque": "114 Nm a 11400 rpm",
+      "transmission": "6 velocidades",
+      "fuel": "Gasolina 95 octanos",
+      "weight": "207 kg",
+      "cooling": "Líquido"
+    }
   },
   {
     "type": "SportBikes",
@@ -35,9 +62,18 @@
     "brand": "Honda",
     "year": 2023,
     "usage": "usado",
-    "price": 11499,
-    "image": "assets/img/cbr600.jpg",
-    "description": "Diseño ligero y conducción precisa."
+    "price": 10200000,
+    "image": "imagenes/motos/cbr600rrnegro.png",
+    "description": "Diseño ligero, conducción precisa y tecnología heredada del MotoGP.",
+    "specs": {
+      "engine": "599 cc 4 cilindros en línea",
+      "power": "120 HP a 13500 rpm",
+      "torque": "66 Nm a 11250 rpm",
+      "transmission": "6 velocidades",
+      "fuel": "Gasolina 95 octanos",
+      "weight": "194 kg",
+      "cooling": "Líquido"
+    }
   },
   {
     "type": "Naked",
@@ -45,9 +81,18 @@
     "brand": "Yamaha",
     "year": 2024,
     "usage": "nuevo",
-    "price": 14999,
-    "image": "assets/img/mt09.jpg",
-    "description": "Motor de tres cilindros y una conducción ágil."
+    "price": 13400000,
+    "image": "imagenes/motos/MT-09Yamaha2024.png",
+    "description": "Motor de tres cilindros con ADN deportivo y conducción ágil en ciudad o pista.",
+    "specs": {
+      "engine": "890 cc tricilíndrico DOHC",
+      "power": "119 HP a 10000 rpm",
+      "torque": "93 Nm a 7000 rpm",
+      "transmission": "6 velocidades",
+      "fuel": "Gasolina 95 octanos",
+      "weight": "189 kg",
+      "cooling": "Líquido"
+    }
   },
   {
     "type": "Touring",
@@ -55,9 +100,18 @@
     "brand": "Honda",
     "year": 2025,
     "usage": "nuevo",
-    "price": 27999,
+    "price": 25500000,
     "image": "assets/img/goldwing.jpg",
-    "description": "Lujo y confort para viajes de larga distancia."
+    "description": "Lujo y confort para viajes de larga distancia, con sistema DCT y navegación integrada.",
+    "specs": {
+      "engine": "1833 cc 6 cilindros opuestos",
+      "power": "125 HP a 5500 rpm",
+      "torque": "170 Nm a 4500 rpm",
+      "transmission": "7 velocidades DCT",
+      "fuel": "Gasolina 95 octanos",
+      "weight": "390 kg",
+      "cooling": "Líquido"
+    }
   },
   {
     "type": "Scooters",
@@ -65,8 +119,39 @@
     "brand": "Yamaha",
     "year": 2024,
     "usage": "nuevo",
-    "price": 4999,
+    "price": 4650000,
     "image": "assets/img/nmax.jpg",
-    "description": "Scooter moderno, económico y ágil para la ciudad."
+    "description": "Scooter moderno, económico y ágil, con sistema ABS y conectividad Bluetooth.",
+    "specs": {
+      "engine": "155 cc monocilíndrico",
+      "power": "15 HP a 8000 rpm",
+      "torque": "13.9 Nm a 6500 rpm",
+      "transmission": "Automática (CVT)",
+      "fuel": "Gasolina 93 octanos",
+      "weight": "132 kg",
+      "cooling": "Líquido"
+    }
+  },
+  {
+    "type": "Naked",
+    "name": "CB190R 2.0",
+    "brand": "Honda",
+    "year": 2025,
+    "usage": "nuevo",
+    "price": 2990000,
+    "image": "imagenes/motos/HondaCB190Rojo.png",
+    "description": "Motocicleta naked urbana con estilo agresivo, motor ágil y tecnología avanzada. Ideal para uso diario y conducción deportiva ligera.",
+    "specs": {
+      "engine": "184 cc monocilíndrico SOHC",
+      "power": "17 HP a 8500 rpm",
+      "torque": "16.3 Nm a 7000 rpm",
+      "transmission": "5 velocidades",
+      "fuel": "Gasolina 93 octanos",
+      "weight": "140 kg",
+      "cooling": "Aire forzado",
+      "brakes": "ABS delantero y trasero",
+      "lighting": "Full LED",
+      "instrument": "Panel digital LCD"
+    }
   }
 ]
