@@ -92,11 +92,11 @@ export class Buildandprice implements AfterViewInit {
     });
     this.renderer.setSize(900, 600);
 
-    const light = new THREE.DirectionalLight(0xffffff, 2);
-    light.position.set(3, 5, 3);
-    this.scene.add(light);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 2.5);
+    directionalLight.position.set(3, 5, 3);
+    this.scene.add(directionalLight);
 
-    const ambient = new THREE.AmbientLight(0xffffff, 0.5);
+    const ambient = new THREE.AmbientLight(0xffffff, 1);
     this.scene.add(ambient);
 
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
@@ -152,13 +152,46 @@ export class Buildandprice implements AfterViewInit {
 
     if (!this.model) return;
 
-    if (partKey === 'body') {
-      const bodyMesh = this.model.getObjectByName('Body') as THREE.Mesh;
-      if (bodyMesh && option.hex) {
-        const mat = bodyMesh.material as THREE.MeshStandardMaterial;
-        mat.color.set(option.hex);
-        mat.needsUpdate = true;
+    switch (partKey) {
+      case 'body': {
+        const bodyMesh = this.model.getObjectByName('Body') as THREE.Mesh;
+        if (bodyMesh && option.hex) {
+          const mat = bodyMesh.material as THREE.MeshStandardMaterial;
+          mat.color.set(option.hex);
+          mat.needsUpdate = true;
+        }
+        break;
       }
+      case 'exhaust':
+        this.showOnly(
+          ['Exhaust_Standard', 'Exhaust_Sport', 'Exhaust_Yoshimura'],
+          option.label.includes('Yoshimura')
+            ? 'Exhaust_Yoshimura'
+            : option.label.includes('deportivo')
+            ? 'Exhaust_Sport'
+            : 'Exhaust_Standard'
+        );
+        break;
+      case 'handlebars':
+        this.showOnly(
+          ['Bars_Clubman', 'Bars_Tracker', 'Bars_Drag'],
+          option.label.includes('Tracker')
+            ? 'Bars_Tracker'
+            : option.label.includes('Drag')
+            ? 'Bars_Drag'
+            : 'Bars_Clubman'
+        );
+        break;
+      case 'seat':
+        this.showOnly(
+          ['Seat_Standard', 'Seat_Sport', 'Seat_Comfort'],
+          option.label.includes('Sport')
+            ? 'Seat_Sport'
+            : option.label.includes('Comfort')
+            ? 'Seat_Comfort'
+            : 'Seat_Standard'
+        );
+        break;
     }
   }
 
@@ -198,5 +231,13 @@ export class Buildandprice implements AfterViewInit {
   /** Volver al catálogo */
   goToCatalog() {
     this.router.navigate(['/models']);
+  }
+
+  /** Muestra solo una pieza visible */
+  private showOnly(meshNames: string[], visibleName: string) {
+    meshNames.forEach((name) => {
+      const mesh = this.model.getObjectByName(name);
+      if (mesh) mesh.visible = name === visibleName;
+    });
   }
 }
