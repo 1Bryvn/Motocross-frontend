@@ -6,3 +6,15 @@ video {
   transition: opacity 0.8s ease-in-out;
 }
 
+.hero-content {
+  animation: fadeUp 1.2s ease forwards;
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+@keyframes fadeUp {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

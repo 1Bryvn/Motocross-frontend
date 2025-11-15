@@ -1,72 +1,72 @@
 <div class="flex flex-col md:flex-row bg-[#0b0b0b] text-white min-h-screen relative">
-
-  <!-- Botón Volver al catálogo -->
-  <button
+<button
     (click)="goToCatalog()"
-    class="absolute top-6 left-6 px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg font-semibold flex items-center gap-2 transition"
+    class="absolute top-3 left-3 px-3 py-1.5 bg-red-600 hover:bg-red-700 rounded-md font-semibold flex items-center gap-2 transition text-sm md:text-base"
   >
-    ← Volver al Catálogo
+    ← Catálogo
   </button>
 
-  <!-- ================================ -->
-  <!--     SECCIÓN CON MODELO 3D       -->
-  <!-- ================================ -->
+  <!-- ========================================================= -->
+  <!--                 SECCIÓN DEL MODELO 3D                     -->
+  <!-- ========================================================= -->
   <div *ngIf="model3DAvailable; else noModel"
-       class="flex-1 flex flex-col items-center justify-start p-6 mt-6">
+       class="flex-1 flex flex-col items-center justify-start p-4 md:p-6 mt-10 md:mt-6">
 
-    <h2 class="text-3xl font-semibold mb-3 text-gray-200 tracking-tight">
-      Customize Your <span class="text-red-500">{{ configData?.modelName }}</span>
+    <h2 class="text-2xl md:text-3xl font-semibold mb-2 md:mb-3 text-gray-200 tracking-tight text-center">
+      Customiza tu <span class="text-red-500">{{ configData?.modelName }}</span>
     </h2>
 
-    <p class="text-gray-400 text-center mb-10 max-w-2xl mx-auto">
-      Customiza y personaliza tu motocicleta a tu gusto antes de llevártela.
+    <p class="text-gray-400 text-center mb-5 md:mb-10 max-w-xl mx-auto text-sm md:text-base">
+      Personaliza tu motocicleta en tiempo real antes de llevártela.
     </p>
 
-    <!-- VIEWER 3D -->
+    <!-- Viewer 3D -->
     <div
-      class="relative bg-[#111] rounded-lg p-3 shadow-lg flex items-center justify-center 
-             w-full max-w-[900px] mx-auto mt-2">
+      class="relative bg-[#111] rounded-lg p-2 md:p-3 shadow-lg flex items-center justify-center w-full 
+             max-w-[900px] mx-auto mt-1 md:mt-2">
 
-      <canvas #canvas class="rounded-lg w-[900px] h-[600px]"></canvas>
+      <!-- Canvas RESPONSIVO -->
+      <canvas #canvas class="rounded-lg w-full h-[280px] sm:h-[380px] md:w-[900px] md:h-[600px]"></canvas>
 
-      <!-- Controles de cámara -->
+      <!-- Controles cámara -->
       <div
-        class="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex gap-4 
-               bg-black/40 px-4 py-2 rounded-lg backdrop-blur-sm"
+        class="absolute bottom-2 md:bottom-3 left-1/2 transform -translate-x-1/2 flex gap-3 
+               bg-black/40 px-3 md:px-4 py-1.5 md:py-2 rounded-lg backdrop-blur-sm"
       >
-        <button (click)="zoomIn()" class="bg-[#1a1a1a] hover:bg-[#222] rounded-md p-2">+</button>
-        <button (click)="zoomOut()" class="bg-[#1a1a1a] hover:bg-[#222] rounded-md p-2">−</button>
-        <button (click)="resetView()" class="bg-[#1a1a1a] hover:bg-[#222] rounded-md p-2 text-sm">Reset</button>
+        <button (click)="zoomIn()" class="bg-[#1a1a1a] hover:bg-[#222] rounded-md p-1.5 md:p-2 text-sm md:text-base">+</button>
+        <button (click)="zoomOut()" class="bg-[#1a1a1a] hover:bg-[#222] rounded-md p-1.5 md:p-2 text-sm md:text-base">−</button>
+        <button (click)="resetView()" class="bg-[#1a1a1a] hover:bg-[#222] rounded-md p-1.5 md:p-2 text-xs md:text-sm">Reset</button>
       </div>
     </div>
   </div>
 
-  <!-- ================================ -->
-  <!--  PANEL LATERAL DE CUSTOMIZACIÓN  -->
-  <!-- ================================ -->
+  <!-- ========================================================= -->
+  <!--                 PANEL LATERAL / MOBILE                     -->
+  <!-- ========================================================= -->
   <aside
     *ngIf="model3DAvailable && configData"
-    class="w-full md:w-[380px] bg-[#141414] border-l border-[#222] p-6 flex flex-col justify-between"
+    class="w-full md:w-[380px] bg-[#141414] border-t md:border-l border-[#222] 
+           p-4 md:p-6 flex flex-col justify-between mt-4 md:mt-0"
   >
     <div>
-      <h3 class="text-xl font-bold mb-4 text-gray-100">Customization Options</h3>
+      <h3 class="text-lg md:text-xl font-bold mb-3 text-gray-100">Opciones de Customización</h3>
 
-      <div *ngFor="let partKey of (configData.parts | keyvalue)" class="mb-6">
-        <p class="text-gray-400 text-sm mb-2">{{ partKey.value.name }}</p>
+      <div *ngFor="let partKey of (configData.parts | keyvalue)" class="mb-4 md:mb-6">
+        <p class="text-gray-400 text-sm mb-1">{{ partKey.value.name }}</p>
 
-        <div class="space-y-3">
+        <div class="space-y-2 md:space-y-3">
           <button
             *ngFor="let option of partKey.value.options"
             (click)="updateOption(partKey.key, option)"
             [class.bg-red-600]="selectedOptions[partKey.key] === option"
             [class.border-red-600]="selectedOptions[partKey.key] === option"
             [class.text-white]="selectedOptions[partKey.key] === option"
-            class="w-full text-left p-3 rounded-lg border border-[#333] 
-                   hover:border-red-500 transition"
+            class="w-full text-left p-2.5 md:p-3 rounded-lg border border-[#333] 
+                   hover:border-red-500 transition text-sm md:text-base"
           >
             <div class="flex justify-between items-center">
               <span>{{ option.label }}</span>
-              <span class="text-sm text-gray-400" *ngIf="option.price > 0">
+              <span class="text-xs md:text-sm text-gray-400" *ngIf="option.price > 0">
                 +{{ option.price | currency:'CLP':'symbol-narrow':'1.0-0' }}
               </span>
             </div>
@@ -75,50 +75,51 @@
       </div>
     </div>
 
-    <!-- RESUMEN -->
-    <div class="border-t border-[#333] pt-4 mt-6">
-      <p class="text-gray-300 font-medium mb-2">
-        Base Price:
+    <!-- Resumen -->
+    <div class="border-t border-[#333] pt-3 mt-4">
+      <p class="text-gray-300 font-medium mb-1 text-sm md:text-base">
+        Precio Base:
         <span class="text-gray-400">
           {{ configData.basePrice | currency:'CLP':'symbol-narrow':'1.0-0' }}
         </span>
       </p>
 
-      <p class="text-gray-300 font-medium mb-2">
+      <p class="text-gray-300 font-medium mb-1 text-sm md:text-base">
         Extras:
         <span class="text-gray-400">
           {{ total - configData.basePrice | currency:'CLP':'symbol-narrow':'1.0-0' }}
         </span>
       </p>
 
-      <h4 class="text-xl font-bold text-red-500 mb-4">
+      <h4 class="text-xl font-bold text-red-500 mb-3">
         Total: {{ total | currency:'CLP':'symbol-narrow':'1.0-0' }}
       </h4>
 
       <button
-        class="w-full py-3 bg-red-600 hover:bg-red-700 rounded-lg font-semibold transition"
+        class="w-full py-2 md:py-3 bg-red-600 hover:bg-red-700 rounded-lg font-semibold transition text-sm md:text-base"
         (click)="addToGarage()"
       >
-        Add to Garage
+        Añadir al Garage
       </button>
     </div>
   </aside>
 
-  <!-- Si NO hay modelo 3D -->
+  <!-- ================================ -->
+  <!-- NO MODEL 3D -->
+  <!-- ================================ -->
   <ng-template #noModel>
     <div class="flex-1 flex flex-col items-center justify-center text-center p-10">
-      <h2 class="text-2xl font-semibold text-red-500 mb-3">Customización no disponible</h2>
-      <p class="text-gray-400">
+      <h2 class="text-xl md:text-2xl font-semibold text-red-500 mb-3">Customización no disponible</h2>
+      <p class="text-gray-400 text-sm md:text-base">
         Pronto añadiremos la versión interactiva de este modelo.
       </p>
 
       <button
         (click)="goToCatalog()"
-        class="mt-6 px-6 py-3 bg-red-600 hover:bg-red-700 rounded-lg font-semibold transition"
+        class="mt-6 px-4 md:px-6 py-2 md:py-3 bg-red-600 hover:bg-red-700 rounded-lg font-semibold transition"
       >
         Volver al Catálogo
       </button>
     </div>
   </ng-template>
-
 </div>

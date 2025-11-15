@@ -4,6 +4,94 @@
   body {
     @apply bg-[#0c141dff] text-white font-sans;
   }
+
+ /* NAV DESKTOP */
+/* Links del menú desktop */
+.menu-link {
+  @apply px-3 py-2 text-sm font-medium text-gray-300 rounded-md transition
+         hover:bg-white/5 hover:text-white;
+}
+
+/* Estilo cuando está activo */
+.menu-active {
+  @apply bg-gray-900/50 text-white;
+}
+
+/* Botones */
+.btn-red {
+  @apply bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg font-semibold transition;
+}
+
+.btn-outline-red {
+  @apply bg-transparent border border-red-600 text-red-500 px-4 py-2 rounded-lg
+         hover:bg-red-600 hover:text-white font-semibold transition;
+}
+
+/* MOBILE MENU */
+.mobile-menu {
+  height: auto;
+  max-height: 90vh;
+}
+
+.mobile-link {
+  @apply block text-lg font-medium text-gray-200 hover:text-red-400 transition;
+}
+
+/* ANIMATIONS */
+.translate-y-0 {
+  transform: translateY(0%);
+}
+
+.-translate-y-full {
+  transform: translateY(-100%);
+}
+
+/* OVERLAY */
+.overlay {
+  transition: opacity 0.3s ease;
+}
+
+
+
+.btn-primary {
+  @apply px-8 py-3 rounded-lg font-semibold bg-red-600 hover:bg-red-700
+         text-white text-lg shadow-lg shadow-red-800/30 transition duration-300;
+}
+
+.btn-outline {
+  @apply px-8 py-3 rounded-lg font-semibold border border-gray-500 text-gray-300 
+         hover:border-red-500 hover:text-red-400 transition text-lg;
+}
+
+
+.tab-btn {
+  @apply px-6 py-3 rounded-lg border border-gray-600 text-gray-300 font-semibold
+         hover:border-red-500 hover:text-red-400 transition;
+}
+
+.tab-active {
+  @apply bg-red-600 border-red-600 text-white shadow-red-800/20 shadow-lg;
+  transform: translateY(-2px);
+}
+
+
+.card-moto {
+  @apply bg-[#111924]/80 backdrop-blur-md rounded-2xl p-8 border border-gray-700 
+         hover:border-red-500 transition shadow-2xl shadow-black/50;
+}
+
+
+.more-link {
+  @apply text-red-500 hover:text-red-400 hover:underline text-sm mt-4 inline-block;
+}
+
+.carousel-btn {
+  @apply absolute top-1/2 -translate-y-1/2 p-4 text-3xl text-white 
+         bg-black/40 hover:bg-black/80 rounded-full transition z-20;
+}
+
+
+
 }
 
 

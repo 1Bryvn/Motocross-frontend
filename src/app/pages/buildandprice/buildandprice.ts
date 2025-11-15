@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, HostListener } from '@angular/core';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
@@ -62,147 +62,121 @@ export class Buildandprice implements AfterViewInit {
       this.loadConfig();
     } else {
       this.model3DAvailable = false;
-      console.warn('Modelo 3D no disponible para:', moto.name);
     }
 
     this.animate();
   }
 
-  /** Retorna la ruta del modelo GLB según el nombre */
-  private getModelPath(modelName: string): string | null {
-    switch (modelName) {
-      case 'CB190R 2.0':
-        return 'model3d/CB190R2.0.glb';
-      default:
-        return null;
-    }
+  /** Detecta tamaño pantalla y retorna dimensiones del canvas */
+  private getCanvasSize() {
+    const width = window.innerWidth <= 768 ? window.innerWidth * 0.95 : 900;
+    const height = window.innerWidth <= 768 ? 300 : 600;
+    return { width, height };
   }
 
-  /** Inicializa el entorno 3D */
   private init3D() {
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.Color(0x111111);
 
-    this.camera = new THREE.PerspectiveCamera(45, 900 / 600, 0.1, 100);
+    const { width, height } = this.getCanvasSize();
+
+    this.camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
     this.camera.position.set(2, 1, 3);
 
     this.renderer = new THREE.WebGLRenderer({
       canvas: this.canvasRef.nativeElement,
       antialias: true,
     });
-    this.renderer.setSize(900, 600);
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 2.5);
-    directionalLight.position.set(3, 5, 3);
-    this.scene.add(directionalLight);
+    this.renderer.setSize(width, height);
 
-    const ambient = new THREE.AmbientLight(0xffffff, 1);
+    const light = new THREE.DirectionalLight(0xffffff, 2);
+    light.position.set(3, 5, 3);
+    this.scene.add(light);
+
+    const ambient = new THREE.AmbientLight(0xffffff, 0.5);
     this.scene.add(ambient);
 
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.controls.enableDamping = true;
   }
 
-  /** Carga el modelo GLB */
-  private loadModel(modelPath: string) {
+  /** Adaptar canvas al cambiar tamaño de pantalla */
+  @HostListener('window:resize')
+  onWindowResize() {
+    if (!this.camera || !this.renderer) return;
+
+    const { width, height } = this.getCanvasSize();
+    this.camera.aspect = width / height;
+    this.camera.updateProjectionMatrix();
+    this.renderer.setSize(width, height);
+  }
+
+  private getModelPath(name: string): string | null {
+    if (name === 'CB190R 2.0') return 'model3d/CB190R2.0.glb';
+    return null;
+  }
+
+  private loadModel(path: string) {
     const loader = new GLTFLoader();
     loader.load(
-      modelPath,
+      path,
       (gltf) => {
         this.model = gltf.scene;
         this.model.position.set(0, -0.8, 0);
         this.model.scale.set(1, 1, 1);
         this.scene.add(this.model);
 
-        if (this.selectedModelName === 'CB190R 2.0') {
-          const hiddenParts = [
-            'Exhaust_Sport',
-            'Exhaust_Yoshimura',
-            'Bars_Tracker',
-            'Bars_Drag',
-            'Seat_Sport',
-            'Seat_Comfort',
-          ];
-          hiddenParts.forEach((n) => {
-            const mesh = this.model.getObjectByName(n);
-            if (mesh) mesh.visible = false;
-          });
-        }
+        // Ocultar partes según modelo
+        const hidden = [
+          'Exhaust_Sport',
+          'Exhaust_Yoshimura',
+          'Bars_Tracker',
+          'Bars_Drag',
+          'Seat_Sport',
+          'Seat_Comfort',
+        ];
+        hidden.forEach((name) => {
+          const mesh = this.model.getObjectByName(name);
+          if (mesh) mesh.visible = false;
+        });
       },
       undefined,
-      (error) => {
-        console.error('Error cargando modelo 3D:', error);
+      (err) => {
+        console.error('Error cargando modelo 3D', err);
         this.model3DAvailable = false;
       }
     );
   }
 
-  /** Carga el JSON de configuración */
   private loadConfig() {
-    this.http.get<MotoConfig>('config/moto-config.json').subscribe((data) => {
-      this.configData = data;
-      this.total = this.configData.basePrice;
+    this.http.get<MotoConfig>('config/moto-config.json').subscribe((d) => {
+      this.configData = d;
+      this.total = d.basePrice;
     });
   }
 
-  /** Actualiza color o pieza */
   updateOption(partKey: string, option: any) {
     this.selectedOptions[partKey] = option;
     this.calculateTotal();
 
     if (!this.model) return;
 
-    switch (partKey) {
-      case 'body': {
-        const bodyMesh = this.model.getObjectByName('Body') as THREE.Mesh;
-        if (bodyMesh && option.hex) {
-          const mat = bodyMesh.material as THREE.MeshStandardMaterial;
-          mat.color.set(option.hex);
-          mat.needsUpdate = true;
-        }
-        break;
+    /** Colores */
+    if (partKey === 'body') {
+      const mesh = this.model.getObjectByName('Body') as THREE.Mesh;
+      if (mesh && option.hex) {
+        (mesh.material as THREE.MeshStandardMaterial).color.set(option.hex);
       }
-      case 'exhaust':
-        this.showOnly(
-          ['Exhaust_Standard', 'Exhaust_Sport', 'Exhaust_Yoshimura'],
-          option.label.includes('Yoshimura')
-            ? 'Exhaust_Yoshimura'
-            : option.label.includes('deportivo')
-            ? 'Exhaust_Sport'
-            : 'Exhaust_Standard'
-        );
-        break;
-      case 'handlebars':
-        this.showOnly(
-          ['Bars_Clubman', 'Bars_Tracker', 'Bars_Drag'],
-          option.label.includes('Tracker')
-            ? 'Bars_Tracker'
-            : option.label.includes('Drag')
-            ? 'Bars_Drag'
-            : 'Bars_Clubman'
-        );
-        break;
-      case 'seat':
-        this.showOnly(
-          ['Seat_Standard', 'Seat_Sport', 'Seat_Comfort'],
-          option.label.includes('Sport')
-            ? 'Seat_Sport'
-            : option.label.includes('Comfort')
-            ? 'Seat_Comfort'
-            : 'Seat_Standard'
-        );
-        break;
     }
   }
 
-  /** Recalcula el total */
   calculateTotal() {
     let extras = 0;
     Object.values(this.selectedOptions).forEach((opt: any) => (extras += opt.price));
     this.total = (this.configData?.basePrice || 0) + extras;
   }
 
-  /** Controles de cámara */
   zoomIn() {
     this.camera.position.z -= 0.2;
   }
@@ -213,31 +187,17 @@ export class Buildandprice implements AfterViewInit {
     this.camera.position.set(2, 1, 3);
   }
 
-  /** Loop animación */
   private animate = () => {
     requestAnimationFrame(this.animate);
     this.controls.update();
     this.renderer.render(this.scene, this.camera);
   };
 
-  /** Agrega la moto al garage */
-  addToGarage() {
-    const summary = Object.entries(this.selectedOptions)
-      .map(([k, v]: any) => `${k}: ${v.label}`)
-      .join('\n');
-    alert(`Moto añadida al garage:\n\n${summary}\n\nTotal: $${this.total.toLocaleString('es-CL')}`);
-  }
-
-  /** Volver al catálogo */
   goToCatalog() {
     this.router.navigate(['/models']);
   }
 
-  /** Muestra solo una pieza visible */
-  private showOnly(meshNames: string[], visibleName: string) {
-    meshNames.forEach((name) => {
-      const mesh = this.model.getObjectByName(name);
-      if (mesh) mesh.visible = name === visibleName;
-    });
+  addToGarage() {
+    alert('Moto añadida al garage.');
   }
 }

@@ -1,9 +1,35 @@
+/* Viewer 3D */
 canvas {
+  width: 100% !important;
+  height: auto !important;
+  max-height: 60vh;
   border-radius: 12px;
   background-color: #0b0b0b;
-  box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.25);
 }
 
+/* Botón seleccionado */
 button.bg-red-600 {
   transition: all 0.2s ease;
+}
+
+/* Panel lateral móvil */
+@media (max-width: 768px) {
+  aside {
+    width: 100% !important;
+    border-left: none !important;
+    border-top: 1px solid #222;
+    padding-bottom: 2rem;
+  }
+}
+
+/* Ajuste texto mobile */
+@media (max-width: 640px) {
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  button {
+    font-size: 0.85rem;
+  }
 }

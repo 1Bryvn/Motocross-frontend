@@ -1,59 +1,138 @@
-<div class="min-h-screen flex flex-col bg-[#111] text-white">
+<div class="min-h-screen flex flex-col bg-[#111] text-white relative">
 
-  <!-- NAVBAR -->
-  <header class="border-b border-[#222] bg-[#0b0b0b]">
-    <nav class="max-w-7xl mx-auto px-6 flex justify-between items-center h-16">
-      <!-- Logo -->
-      <div class="flex items-center space-x-2">
-        <span class="text-red-500 text-2xl font-bold tracking-wide">HorizonteMotor</span>
-      </div>
+  <!-- =============================== -->
+  <!--            NAVBAR               -->
+  <!-- =============================== -->
+  <header
+    class="relative bg-[#0b0b0b]/50 backdrop-blur-md after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10 z-50">
 
-      <!-- Menú -->
-      <ul class="hidden md:flex gap-8 text-sm">
-        <li><a routerLink="/" class="hover:text-red-400">Home</a></li>
-        <li><a routerLink="/models" class="hover:text-red-400">Modelos</a></li>
-        <li><a routerLink="/buildandprice" class="hover:text-red-400">Armado & Precio</a></li>
-        <li><a routerLink="/shoppingtools" class="hover:text-red-400">Venta de herramientas</a></li>
-        <li><a routerLink="/newandevents" class="hover:text-red-400">Novedades</a></li>
-      </ul>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="relative flex h-16 items-center justify-between">
 
-      <!-- Buscador + Dealer -->
-      <div class="flex items-center gap-4">
-        <input type="text" placeholder="Search"
-          class="hidden md:block bg-[#1a1a1a] border border-[#333] rounded-md px-3 py-1 text-sm focus:outline-none">
-        <button class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-md text-sm font-medium">
-          Find a Dealer
+        <!-- LOGO IZQUIERDA -->
+        <div class="flex items-center flex-shrink-0 ml-0 mr-auto">
+          <span class="text-red-500 text-2xl font-bold tracking-wide select-none">
+            HorizonteMotor
+          </span>
+        </div>
+
+
+        <!-- MENÚ DESKTOP CENTRADO -->
+        <div class="hidden sm:ml-6 sm:block mx-auto">
+          <div class="flex space-x-4">
+
+            <!-- Home -->
+            <a routerLink="/" routerLinkActive="menu-active" class="menu-link">
+              Home
+            </a>
+
+            <a routerLink="/models" routerLinkActive="menu-active" class="menu-link">
+              Modelos
+            </a>
+
+            <a routerLink="/buildandprice" routerLinkActive="menu-active" class="menu-link">
+              Custom
+            </a>
+
+            <a routerLink="/shoppingtools" routerLinkActive="menu-active" class="menu-link">
+              Herramientas
+            </a>
+
+            <a routerLink="/newandevents" routerLinkActive="menu-active" class="menu-link">
+              Novedades
+            </a>
+
+          </div>
+        </div>
+
+        <!-- DERECHA: BUSCADOR + LOGIN/REGISTER -->
+        <div class="hidden sm:flex items-center gap-3">
+
+          <!-- BUSCADOR PREMIUM -->
+          <div class="relative w-50 md:w-64 lg:w-60">
+            <input type="text" placeholder="Buscar modelos..." class="w-full bg-transparent placeholder:text-gray-400 text-gray-200 text-sm
+                   border border-[#333] rounded-md pl-3 pr-24 py-1.5
+                   transition duration-300 ease focus:outline-none focus:border-gray-400 hover:border-gray-300">
+
+            <button class="absolute top-1 right-1 flex items-center rounded bg-red-600 py-1 px-2.5
+                   text-sm text-white transition-all hover:bg-red-700">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 mr-1">
+                <path fill-rule="evenodd"
+                  d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z"
+                  clip-rule="evenodd" />
+              </svg>
+              Buscar
+            </button>
+          </div>
+
+          <!-- BOTONES DERECHA -->
+          <div class="hidden md:flex items-center gap-2 ml-auto mr-0">
+            <a routerLink="/login" class="btn-outline-red">Iniciar Sesión</a>
+            <a routerLink="/register" class="btn-red">Registrarse</a>
+          </div>
+
+        </div>
+
+        <!-- BOTÓN MENÚ MOBILE -->
+        <button (click)="toggleMenu()" class="sm:hidden text-gray-300 text-3xl focus:outline-none">
+          ☰
         </button>
       </div>
-    </nav>
-
-    <!-- Botones Login/Register -->
-    <div class="flex justify-end pr-6 pb-2 space-x-3">
-      <a
-        routerLink="/login"
-        class="px-4 py-2 bg-transparent border border-red-600 text-red-500 hover:bg-red-600 hover:text-white rounded-lg font-semibold transition"
-      >
-        Iniciar Sesión
-      </a>
-      <a
-        routerLink="/register"
-        class="px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg text-white font-semibold transition"
-      >
-        Registrarse
-      </a>
     </div>
+
   </header>
 
-  <!-- CONTENIDO -->
-  <main class="flex-1">
+
+
+  <!-- =============================== -->
+  <!--     OVERLAY OSCURO (MOBILE)     -->
+  <!-- =============================== -->
+  <div *ngIf="isMenuOpen" class="overlay fixed inset-0 bg-black/60 backdrop-blur-sm z-40" (click)="closeMenu()">
+  </div>
+
+  <!-- =============================== -->
+  <!--        MOBILE MENU TOP SLIDE    -->
+  <!-- =============================== -->
+  <div class="mobile-menu fixed left-0 right-0 top-0 bg-[#0f0f0f] border-b border-[#222]
+           z-50 p-6 space-y-6 shadow-2xl transform transition-transform duration-300 md:hidden"
+    [class.translate-y-0]="isMenuOpen" [class.-translate-y-full]="!isMenuOpen">
+
+    <!-- CLOSE -->
+    <button class="w-full text-right text-3xl text-gray-300" (click)="closeMenu()">✕</button>
+
+    <!-- NAV LINKS -->
+    <a routerLink="/" class="mobile-link" (click)="closeMenu()">Home</a>
+    <a routerLink="/models" class="mobile-link" (click)="closeMenu()">Modelos</a>
+    <a routerLink="/buildandprice" class="mobile-link" (click)="closeMenu()">Armado & Precio</a>
+    <a routerLink="/shoppingtools" class="mobile-link" (click)="closeMenu()">Venta de herramientas</a>
+    <a routerLink="/newandevents" class="mobile-link" (click)="closeMenu()">Novedades</a>
+
+    <hr class="border-[#333]">
+
+    <a routerLink="/login" class="btn-outline-red block text-center" (click)="closeMenu()">
+      Iniciar Sesión
+    </a>
+
+    <a routerLink="/register" class="btn-red block text-center" (click)="closeMenu()">
+      Registrarse
+    </a>
+  </div>
+
+  <!-- =============================== -->
+  <!--        MAIN CONTENT             -->
+  <!-- =============================== -->
+  <main class="flex-1 transition-opacity duration-300" [class.opacity-30]="isMenuOpen">
     <router-outlet></router-outlet>
   </main>
 
-  <!-- FOOTER -->
+  <!-- =============================== -->
+  <!--              FOOTER             -->
+  <!-- =============================== -->
   <footer class="border-t border-[#222] bg-[#0b0b0b] py-8 text-center text-xs text-gray-400">
     <div class="max-w-7xl mx-auto px-6 flex justify-between">
       <p>Privacy Policy · Terms of Service · Contact Us</p>
       <p>© 2025 HorizonteMotor. All rights reserved.</p>
     </div>
   </footer>
+
 </div>
